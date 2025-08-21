@@ -1,0 +1,129 @@
+name: 🐛 Bug Report
+description: Report a problem with the Mergington High School Management System
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug! Please provide as much detail as possible to help our development team resolve the issue quickly.
+
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: Problem Description
+      description: Clearly describe what is wrong or not working as expected
+      placeholder: |
+        Example: When I try to register a student for Soccer Practice, the registration button doesn't respond and no confirmation message appears.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area-affected
+    attributes:
+      label: Area Affected
+      description: Which part of the system has the problem?
+      options:
+        - Student Registration
+        - Activity Management
+        - Teacher Login/Authentication
+        - Activity Search/Filtering
+        - User Interface/Display
+        - Data/Information Display
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: List the exact steps that lead to the problem
+      placeholder: |
+        1. Log in as teacher with username 'teacher1'
+        2. Click on 'Soccer Practice' activity
+        3. Enter student email 'student@mergington.edu'
+        4. Click 'Register' button
+        5. Nothing happens - no confirmation or error message
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: |
+        The student should be successfully registered for the activity and I should see a confirmation message like "Student registered successfully for Soccer Practice"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happens?
+      placeholder: |
+        The registration button doesn't respond at all. No confirmation message appears and the student is not added to the activity.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency Level
+      description: How urgent is this fix?
+      options:
+        - Low - Cosmetic issue or minor inconvenience
+        - Medium - Affects daily work but has workarounds
+        - High - Blocks important tasks, no workaround
+        - Critical - System unusable, affects students/parents
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information that might help (screenshots, error messages, browser used, etc.)
+      placeholder: |
+        - Browser: Chrome Version 120
+        - Error in browser console: [if any]
+        - Screenshots: [attach if helpful]
+        - This started happening after: [if known]
+
+  - type: checkboxes
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Check what needs to be fixed for this issue to be resolved
+      options:
+        - label: The bug is completely fixed and the feature works as expected
+          required: true
+        - label: No new bugs are introduced by the fix
+          required: true
+        - label: The fix is tested to ensure it works in typical usage scenarios
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 💡 Helpful Information for Developers
+        
+        **Common Bug Locations:**
+        - Registration issues: Check `/src/backend/routers/activities.py` signup endpoint
+        - Login problems: Check `/src/backend/routers/auth.py` login endpoint  
+        - UI issues: Check `/src/static/app.js` and `/src/static/index.html`
+        - Data display: Check activity loading and filtering functions
+        
+        **Testing Suggestions:**
+        - Test with different user accounts (teacher1/teacher2) 
+        - Test with different activities and student emails
+        - Check browser console for JavaScript errors
+        - Verify API endpoints are responding correctly
+        
+        **Related Files to Review:**
+        - Frontend: `/src/static/app.js`, `/src/static/index.html`
+        - Backend: `/src/backend/routers/activities.py`, `/src/backend/routers/auth.py`
+        - Database: `/src/backend/database.py`
