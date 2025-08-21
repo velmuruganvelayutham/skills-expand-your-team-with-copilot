@@ -1,0 +1,202 @@
+name: 🔧 System Administration
+description: Request system-level changes, configuration updates, or administrative tasks
+title: "[ADMIN] "
+labels: ["admin", "infrastructure"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Request system administration changes for the Mergington High School Management System, including configuration, security, or infrastructure updates.
+
+  - type: dropdown
+    id: admin-type
+    attributes:
+      label: Type of Administrative Task
+      description: What type of administrative change is needed?
+      options:
+        - User Account Management (teachers, students)
+        - Security Configuration
+        - Database Management
+        - Performance Optimization
+        - Backup and Recovery
+        - System Configuration
+        - Access Control/Permissions
+        - Integration with School Systems
+        - Monitoring and Logging
+        - Other Administrative Task
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-situation
+    attributes:
+      label: Current Situation
+      description: Describe the current system state and why changes are needed
+      placeholder: |
+        Example: Currently all teachers have the same access level, but we need to give department heads additional permissions to manage activities for their departments only.
+    validations:
+      required: true
+
+  - type: textarea
+    id: requested-changes
+    attributes:
+      label: Requested Changes
+      description: What specific administrative changes need to be implemented?
+      placeholder: |
+        Example:
+        - Create "Department Head" role with permissions to:
+          - Add/remove activities in their department
+          - View student registration data for their activities
+          - Export activity reports
+        - Assign specific teachers to this role
+        - Ensure regular teachers cannot modify activities outside their department
+    validations:
+      required: true
+
+  - type: dropdown
+    id: security-impact
+    attributes:
+      label: Security Impact
+      description: Does this change affect system security?
+      options:
+        - No security impact
+        - Low security impact (minor permission changes)
+        - Medium security impact (new access controls)
+        - High security impact (major permission or authentication changes)
+        - Requires security review before implementation
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected-users
+    attributes:
+      label: Affected Users
+      description: Which users or user groups will be affected by this change?
+      placeholder: |
+        Example:
+        - Department Heads: Ms. Johnson (Science), Mr. Smith (Arts), Ms. Davis (Sports)
+        - Regular Teachers: Will have same access as before
+        - Students: No change in their experience
+        - System Administrators: Will need new tools to manage department assignments
+    validations:
+      required: true
+
+  - type: dropdown
+    id: implementation-timeline
+    attributes:
+      label: Implementation Timeline
+      description: When do these changes need to be implemented?
+      options:
+        - End of current semester
+        - Before next semester starts
+        - Within 1 month
+        - Within 1 week
+        - Urgent - as soon as possible
+        - Flexible timeline
+    validations:
+      required: true
+
+  - type: textarea
+    id: rollback-plan
+    attributes:
+      label: Rollback Plan
+      description: What should happen if these changes cause problems?
+      placeholder: |
+        Example: If the new permission system causes issues, revert all users to standard teacher permissions and restore the original single-role system until problems can be resolved.
+    validations:
+      required: true
+
+  - type: textarea
+    id: testing-requirements
+    attributes:
+      label: Testing Requirements
+      description: How should these changes be tested before going live?
+      placeholder: |
+        Example:
+        - Test in development environment with sample teacher accounts
+        - Verify department heads can only access their assigned activities  
+        - Confirm regular teachers cannot access admin functions
+        - Test that student registration still works normally
+        - Verify data export functions work correctly
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria-admin
+    attributes:
+      label: Acceptance Criteria
+      description: Specific requirements for this administrative change to be considered complete
+      placeholder: |
+        Example:
+        - [ ] Department Head role is created with appropriate permissions
+        - [ ] Specified teachers are assigned to Department Head role
+        - [ ] Department heads can manage activities in their departments only
+        - [ ] Regular teachers maintain their current access level
+        - [ ] All existing functionality continues to work
+        - [ ] Changes are documented for future administrators
+        - [ ] Rollback procedure is tested and documented
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-considerations
+    attributes:
+      label: Additional Considerations
+      description: Any other important factors, dependencies, or concerns
+      placeholder: |
+        - Training needed for new user roles: [if any]
+        - Integration with school directory: [if applicable]
+        - Compliance requirements: [if any]
+        - Backup requirements before changes: [if needed]
+        - Communication plan for affected users: [if needed]
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 💡 Implementation Guidance for Developers
+        
+        **System Administration Areas:**
+        - User Authentication: `/src/backend/routers/auth.py`
+        - User Database: `/src/backend/database.py` - teachers_collection
+        - Access Control: Throughout application, especially activities router
+        - Configuration: Environment variables and application settings
+        
+        **Current Architecture:**
+        - Simple teacher authentication with username/password
+        - All teachers have equal permissions
+        - Activities managed by any authenticated teacher
+        - In-memory database (MongoDB-style collections)
+        
+        **Implementation Considerations:**
+        - Role-based access control may require new user fields
+        - Activity ownership/department assignment may need new data fields
+        - Frontend may need conditional UI based on user roles
+        - API endpoints may need permission checks
+        
+        **Key Files for Admin Changes:**
+        - `/src/backend/database.py` - User and activity data structure
+        - `/src/backend/routers/auth.py` - Authentication and authorization
+        - `/src/backend/routers/activities.py` - Activity management permissions
+        - `/src/static/app.js` - Frontend user interface adaptations
+        
+        **Security Best Practices:**
+        - Validate permissions on both frontend and backend
+        - Use principle of least privilege
+        - Log administrative actions
+        - Test authorization edge cases
+        - Ensure proper session management
+        
+        **Testing Checklist:**
+        - [ ] Create test accounts with different roles
+        - [ ] Verify permission boundaries are enforced
+        - [ ] Test unauthorized access attempts
+        - [ ] Confirm existing functionality still works
+        - [ ] Validate data integrity after changes
+        - [ ] Test rollback procedures
+        
+        **Documentation Requirements:**
+        - Document new user roles and permissions
+        - Update API documentation if endpoints change
+        - Create admin procedures for user management
+        - Document troubleshooting for permission issues

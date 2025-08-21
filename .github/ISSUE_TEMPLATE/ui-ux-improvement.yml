@@ -1,0 +1,193 @@
+name: 🎨 UI/UX Improvement
+description: Suggest improvements to the user interface or user experience
+title: "[UI/UX] "
+labels: ["ui/ux", "enhancement"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggest improvements to make the Mergington High School Management System easier and more enjoyable to use.
+
+  - type: dropdown
+    id: ui-area
+    attributes:
+      label: UI/UX Area
+      description: Which part of the interface needs improvement?
+      options:
+        - Overall Layout and Design
+        - Activity Search and Filtering
+        - Student Registration Process
+        - Teacher Login and Dashboard
+        - Activity Display Cards
+        - Mobile/Tablet Experience
+        - Navigation and Menus
+        - Error Messages and Feedback
+        - Loading and Performance
+        - Accessibility Features
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-experience
+    attributes:
+      label: Current User Experience
+      description: Describe the current user experience and what makes it difficult or confusing
+      placeholder: |
+        Example: When teachers search for activities, the results are hard to scan because there's too much text in each activity card. Teachers have to read through long descriptions to find basic info like time and capacity.
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-pain-points
+    attributes:
+      label: User Pain Points
+      description: What specific problems do users (teachers, students, parents) face?
+      placeholder: |
+        Example:
+        - Takes too long to find key information (time, location, capacity)
+        - Activity cards look too similar - hard to distinguish between activities
+        - Mobile users have to zoom in to read small text
+        - No visual indication of which activities are full vs. available
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-improvement
+    attributes:
+      label: Proposed Improvement
+      description: Describe your suggested solution or improvement
+      placeholder: |
+        Example: Redesign activity cards to have a cleaner layout with:
+        - Large, bold activity name at the top
+        - Key info (time, day, capacity) displayed prominently in a sidebar
+        - Color-coded indicators for availability (green=available, yellow=almost full, red=full)
+        - Shorter, scannable descriptions with a "Read more" option
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user-group
+    attributes:
+      label: Primary Users Affected
+      description: Who would benefit most from this improvement?
+      options:
+        - Teachers (primary users)
+        - Students (browsing activities)
+        - Parents (helping students choose)
+        - All user groups equally
+        - System administrators
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device-focus
+    attributes:
+      label: Device/Platform Focus
+      description: Which devices should this improvement prioritize?
+      options:
+        - Desktop/Laptop computers
+        - Mobile phones
+        - Tablets
+        - All devices equally
+        - No specific device preference
+    validations:
+      required: true
+
+  - type: textarea
+    id: success-metrics
+    attributes:
+      label: Success Metrics
+      description: How would we know this improvement is successful?
+      placeholder: |
+        Example:
+        - Teachers can find activity information 50% faster
+        - Fewer questions about activity times and availability
+        - Improved mobile usability (less zooming/scrolling needed)
+        - Higher user satisfaction in feedback surveys
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria-ux
+    attributes:
+      label: Acceptance Criteria
+      description: Specific requirements for this improvement to be considered complete
+      placeholder: |
+        Example:
+        - [ ] Activity cards have a clean, scannable layout
+        - [ ] Key information (time, capacity, availability) is prominently displayed
+        - [ ] Design works well on mobile devices (responsive)
+        - [ ] Maintains consistent styling with rest of application
+        - [ ] Accessibility guidelines are followed (contrast, screen readers)
+        - [ ] No functionality is lost in the redesign
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples-inspiration
+    attributes:
+      label: Examples or Inspiration
+      description: Any examples, mockups, or inspiration for this improvement
+      placeholder: |
+        - Similar interfaces that work well: [describe or provide links]
+        - Sketches or mockups: [attach files if available]  
+        - Specific design patterns to consider: [describe]
+        - Reference implementations: [if any]
+
+  - type: checkboxes
+    id: design-considerations
+    attributes:
+      label: Design Considerations
+      description: Important factors to consider in this improvement
+      options:
+        - label: Should work well for users with visual impairments
+        - label: Should be intuitive for non-technical users
+        - label: Should maintain fast loading times
+        - label: Should work on older mobile devices
+        - label: Should be consistent with school branding/colors
+        - label: Should require minimal training for teachers
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 💡 Implementation Guidance for Developers
+        
+        **UI/UX Implementation Files:**
+        - HTML Structure: `/src/static/index.html`
+        - Styling: `/src/static/style.css` (look for existing styles)
+        - JavaScript Interactions: `/src/static/app.js`
+        - Responsive Design: Check existing CSS media queries
+        
+        **Current Design Patterns:**
+        - Activity cards are generated in JavaScript (`renderActivityCard` function)
+        - Modal dialogs for registration and login
+        - Filter sidebar with category, day, and time filters
+        - Search functionality with real-time results
+        
+        **Key Functions to Review:**
+        - `renderActivityCard()` - How activities are displayed
+        - `displayFilteredActivities()` - How results are shown
+        - `formatSchedule()` - How schedule info is formatted
+        - CSS classes for `.activity-card`, `.filters`, `.modal`
+        
+        **UI/UX Best Practices to Follow:**
+        - Maintain existing color scheme and branding
+        - Ensure accessibility (ARIA labels, contrast ratios)
+        - Test responsive design on mobile devices
+        - Keep loading performance optimal
+        - Follow existing interaction patterns
+        
+        **Testing Suggestions:**
+        - Test on different screen sizes (mobile, tablet, desktop)
+        - Verify with browser zoom at 150% and 200%
+        - Check color contrast for accessibility
+        - Test with screen reader if possible
+        - Validate HTML and CSS
+        
+        **Related Design Elements:**
+        - Check existing button styles, form inputs, and cards
+        - Review current typography and spacing
+        - Consider existing filter and search interfaces
+        - Look at modal dialog designs for consistency

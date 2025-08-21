@@ -1,0 +1,153 @@
+name: ✨ Feature Request
+description: Request a new feature or enhancement for the Mergington High School Management System
+title: "[FEATURE] "
+labels: ["enhancement", "needs-review"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide detailed information to help our development team understand your needs.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: Clearly describe the new feature or enhancement you'd like to see
+      placeholder: |
+        Example: Add the ability to filter activities by grade level so students can easily find age-appropriate activities.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - User Interface Enhancement
+        - New Activity Management Feature
+        - Student/Parent Portal Feature
+        - Teacher Administrative Feature
+        - Search and Filtering Enhancement
+        - Reporting and Analytics
+        - Mobile/Responsive Improvements
+        - Integration with External Systems
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User Story
+      description: Describe who benefits and why this feature is needed
+      placeholder: |
+        As a [teacher/student/parent], I want to [specific action] so that I can [benefit/outcome].
+        
+        Example: As a teacher, I want to filter activities by grade level so that I can quickly recommend appropriate activities to students of different ages.
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-limitation
+    attributes:
+      label: Current Limitation
+      description: What can't you do now that this feature would solve?
+      placeholder: |
+        Example: Currently, all activities are shown together regardless of grade level, making it difficult for teachers to find age-appropriate activities for specific students.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How do you envision this feature working?
+      placeholder: |
+        Example: Add grade level filters (6th, 7th, 8th, All) to the activity search sidebar. When a grade is selected, only show activities appropriate for that grade level.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature?
+      options:
+        - Low - Nice to have, not urgent
+        - Medium - Would significantly improve workflow
+        - High - Important for daily operations
+        - Critical - Essential for system effectiveness
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria-detailed
+    attributes:
+      label: Detailed Acceptance Criteria
+      description: List specific requirements for this feature to be considered complete
+      placeholder: |
+        Example:
+        - [ ] A grade level filter is added to the activity search sidebar
+        - [ ] Filter options include: 6th Grade, 7th Grade, 8th Grade, All Grades
+        - [ ] When a grade is selected, only activities for that grade are displayed
+        - [ ] The filter works together with existing search and category filters
+        - [ ] Teachers can still see all activities when "All Grades" is selected
+        - [ ] The grade level is clearly displayed on each activity card
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-details
+    attributes:
+      label: Additional Details
+      description: Any other information, mockups, examples, or related features
+      placeholder: |
+        - Similar systems that have this feature: [examples]
+        - Mockups or screenshots: [attach if available]
+        - Related features that might be needed: [list any]
+        - Potential challenges to consider: [if any]
+
+  - type: checkboxes
+    id: feature-requirements
+    attributes:
+      label: Feature Requirements Checklist
+      description: Confirm these requirements for the feature
+      options:
+        - label: This feature should work on both desktop and mobile devices
+          required: false
+        - label: This feature should be accessible to users with disabilities
+          required: false
+        - label: This feature should maintain existing functionality
+          required: true
+        - label: This feature should be intuitive for teachers to use
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 💡 Implementation Guidance for Developers
+        
+        **Typical Implementation Areas:**
+        - UI Changes: `/src/static/index.html` for new interface elements
+        - JavaScript Logic: `/src/static/app.js` for filtering and interaction
+        - Backend API: `/src/backend/routers/activities.py` for new endpoints if needed
+        - Database: `/src/backend/database.py` for data structure changes if needed
+        
+        **Design Considerations:**
+        - Follow existing UI patterns in the application
+        - Ensure mobile responsiveness matches current design
+        - Use consistent styling with existing filters
+        - Consider performance impact on activity loading
+        
+        **Testing Suggestions:**
+        - Test with various combinations of filters
+        - Verify backwards compatibility with existing features
+        - Test on different screen sizes and devices
+        - Ensure feature works with all existing activities
+        
+        **Related Files to Review:**
+        - UI/Frontend: `/src/static/index.html`, `/src/static/app.js`, `/src/static/style.css`
+        - Backend: `/src/backend/routers/activities.py`
+        - Sample Data: `/src/backend/database.py` (for understanding current data structure)

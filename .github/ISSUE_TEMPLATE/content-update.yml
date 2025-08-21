@@ -1,0 +1,182 @@
+name: 📝 Content Update Request
+description: Request updates to activity information, schedules, or other content in the system
+title: "[CONTENT] "
+labels: ["content", "data-update"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Request updates to activities, schedules, or other content in the Mergington High School Management System.
+
+  - type: dropdown
+    id: content-type
+    attributes:
+      label: Type of Content Update
+      description: What type of content needs to be updated?
+      options:
+        - Activity Information (name, description, details)
+        - Schedule Changes (time, day, duration)
+        - New Activity Addition
+        - Activity Removal/Cancellation
+        - Teacher Information
+        - Student Capacity Changes
+        - Location/Room Changes
+        - Other Content Update
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-content
+    attributes:
+      label: Current Content
+      description: What is the current information that needs to be changed?
+      placeholder: |
+        Example: 
+        Activity: Soccer Practice
+        Current Schedule: Monday, Wednesday 3:30-5:00 PM
+        Current Description: Weekly soccer practice for all skill levels
+        Current Capacity: 20 students
+    validations:
+      required: true
+
+  - type: textarea
+    id: requested-changes
+    attributes:
+      label: Requested Changes
+      description: What specific changes need to be made?
+      placeholder: |
+        Example:
+        - Change schedule to Tuesday, Thursday 3:30-5:00 PM
+        - Update description to "Competitive soccer practice for intermediate and advanced players"
+        - Increase capacity to 25 students
+        - Add requirement: "Students must have completed beginner soccer program"
+    validations:
+      required: true
+
+  - type: input
+    id: effective-date
+    attributes:
+      label: Effective Date
+      description: When should these changes take effect?
+      placeholder: "Example: January 15, 2024 or Next semester"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason-for-change
+    attributes:
+      label: Reason for Change
+      description: Why are these changes needed?
+      placeholder: |
+        Example: The gym is no longer available on Monday/Wednesday due to basketball season. We also want to focus on more advanced skills this semester.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: affected-areas
+    attributes:
+      label: Areas That Need Updates
+      description: Check all areas that will be affected by this content change
+      options:
+        - label: Activity display on main page
+        - label: Activity search and filtering
+        - label: Student registration system
+        - label: Teacher dashboard
+        - label: Email notifications (if any)
+        - label: Printed materials or external calendars
+
+  - type: textarea
+    id: student-impact
+    attributes:
+      label: Impact on Current Students
+      description: How will this change affect students already registered for this activity?
+      placeholder: |
+        Example: Students currently registered for Monday/Wednesday soccer will need to be contacted about the schedule change. Those who cannot attend Tuesday/Thursday should be offered alternative activities.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: urgency-level
+    attributes:
+      label: Urgency Level
+      description: How quickly do these changes need to be implemented?
+      options:
+        - Low - Can wait until next semester
+        - Medium - Needed within 2-4 weeks
+        - High - Needed within 1 week
+        - Urgent - Needed immediately
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria-content
+    attributes:
+      label: Acceptance Criteria
+      description: How will we know this content update is complete and correct?
+      placeholder: |
+        Example:
+        - [ ] Activity schedule shows Tuesday, Thursday 3:30-5:00 PM
+        - [ ] Activity description is updated with new text
+        - [ ] Student capacity is changed to 25
+        - [ ] Existing registered students are preserved during the update
+        - [ ] New schedule appears in all search and filter results
+        - [ ] Activity card displays updated information correctly
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      description: Any other information or special considerations
+      placeholder: |
+        - Contact information for coordination: [if needed]
+        - Dependencies on other changes: [if any]
+        - Related activities that might need updates: [if any]
+        - Special formatting or display requirements: [if any]
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 💡 Implementation Guidance for Developers
+        
+        **Content Update Locations:**
+        - Activity Data: `/src/backend/database.py` - `init_database()` function
+        - Sample Activities: Look for the activities_collection initialization
+        - Data Structure: Activities stored with name, description, schedule_details, participants, etc.
+        
+        **Key Files to Update:**
+        - `/src/backend/database.py` - Main data source for activities
+        - Verify changes appear in API endpoints at `/activities`
+        - Test frontend displays updated content correctly
+        
+        **Update Process:**
+        1. Locate the specific activity in the database initialization code
+        2. Update the activity object with new information
+        3. Ensure data structure remains consistent (schedule_details format, etc.)
+        4. Test that existing functionality still works
+        5. Verify participants list is preserved if applicable
+        
+        **Testing Checklist:**
+        - [ ] Activity appears correctly on main page
+        - [ ] Search and filtering still work with updated content
+        - [ ] Registration process works with updated activity
+        - [ ] No existing data is lost during update
+        - [ ] Schedule format displays correctly (12-hour AM/PM format)
+        
+        **Data Structure Reference:**
+        ```python
+        {
+            "_id": "activity-name",
+            "name": "Display Name",
+            "description": "Activity description",
+            "schedule_details": {
+                "days": ["Monday", "Wednesday"],
+                "start_time": "15:30",
+                "end_time": "17:00"
+            },
+            "participants": [],
+            "capacity": 20
+        }
+        ```

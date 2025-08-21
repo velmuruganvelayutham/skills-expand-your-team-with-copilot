@@ -1,0 +1,197 @@
+name: 📚 Documentation Update
+description: Request improvements or updates to documentation, help text, or user guides
+title: "[DOCS] "
+labels: ["documentation", "content"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Request updates to documentation, user guides, or help text in the Mergington High School Management System.
+
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation needs updating?
+      options:
+        - User Guide/Help Documentation
+        - Development/Technical Documentation
+        - Setup and Installation Instructions
+        - API Documentation
+        - Teacher Training Materials
+        - Student/Parent Instructions
+        - Troubleshooting Guide
+        - System Requirements
+        - Other Documentation
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-documentation
+    attributes:
+      label: Current Documentation Issue
+      description: What's wrong with the current documentation or what's missing?
+      placeholder: |
+        Example: The development guide doesn't explain how to add new activities to the system. New developers are confused about where to modify the activity data and how to test their changes.
+    validations:
+      required: true
+
+  - type: textarea
+    id: target-audience
+    attributes:
+      label: Target Audience
+      description: Who needs this documentation? (teachers, developers, students, parents, etc.)
+      placeholder: |
+        Example: New developers joining the project, particularly those who need to modify activity data or add new features.
+    validations:
+      required: true
+
+  - type: textarea
+    id: missing-information
+    attributes:
+      label: Missing or Incorrect Information
+      description: What specific information is missing, outdated, or incorrect?
+      placeholder: |
+        Example:
+        - No explanation of the activity data structure in database.py
+        - Missing steps for testing changes locally
+        - Outdated screenshots that don't match current interface
+        - No examples of common modifications
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-content
+    attributes:
+      label: Proposed Documentation Content
+      description: What should the updated documentation include?
+      placeholder: |
+        Example: Add a section to the development guide with:
+        - Overview of the activity data structure
+        - Step-by-step guide to adding a new activity
+        - Instructions for modifying existing activities
+        - How to test changes without affecting production data
+        - Common troubleshooting tips
+    validations:
+      required: true
+
+  - type: dropdown
+    id: documentation-location
+    attributes:
+      label: Documentation Location
+      description: Where should this documentation be located?
+      options:
+        - README.md (main repository)
+        - docs/ folder (development documentation)
+        - In-app help text or tooltips
+        - Code comments
+        - GitHub Wiki
+        - Separate user manual
+        - API documentation
+        - Not sure - suggest best location
+    validations:
+      required: true
+
+  - type: dropdown
+    id: urgency-docs
+    attributes:
+      label: Priority Level
+      description: How important is this documentation update?
+      options:
+        - Low - Improvement for future reference
+        - Medium - Would help current users significantly
+        - High - Blocking current development or user tasks
+        - Critical - Required for system to be usable
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria-docs
+    attributes:
+      label: Acceptance Criteria
+      description: How will we know this documentation update is complete and helpful?
+      placeholder: |
+        Example:
+        - [ ] Documentation clearly explains the activity data structure
+        - [ ] Step-by-step instructions are provided with examples
+        - [ ] Documentation is tested by someone unfamiliar with the process
+        - [ ] Screenshots or code examples are current and accurate
+        - [ ] Documentation follows existing style and formatting
+        - [ ] Links and references are working and up-to-date
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-files
+    attributes:
+      label: Related Files or Sections
+      description: Which existing files or documentation sections are related to this update?
+      placeholder: |
+        Example:
+        - docs/how-to-develop.md (needs new section)
+        - src/backend/database.py (code that should be documented)
+        - README.md (may need updated links)
+        - Any existing API documentation
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: documentation-requirements
+    attributes:
+      label: Documentation Requirements
+      description: What should this documentation include?
+      options:
+        - label: Clear step-by-step instructions
+        - label: Code examples or screenshots
+        - label: Common troubleshooting tips
+        - label: Links to related resources
+        - label: Prerequisite knowledge clearly stated
+        - label: Tested by someone other than the author
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 💡 Implementation Guidance for Developers
+        
+        **Documentation Files in Repository:**
+        - Main README: `/README.md`
+        - Development Guide: `/docs/how-to-develop.md`
+        - Code Comments: Throughout `/src/` directory
+        - API Docs: Available at `/docs` endpoint when server is running
+        
+        **Current Documentation Structure:**
+        - Development setup and dependencies
+        - API endpoint descriptions
+        - Basic usage instructions
+        - Debugging and troubleshooting tips
+        
+        **Documentation Best Practices:**
+        - Use clear, simple language
+        - Include practical examples and code snippets
+        - Add screenshots for UI-related instructions
+        - Keep information current and accurate
+        - Test instructions with fresh environment
+        
+        **Key Areas Often Needing Documentation:**
+        - Database schema and data structure
+        - Adding new API endpoints
+        - Modifying frontend components
+        - Deployment and configuration
+        - Testing procedures
+        - Common development workflows
+        
+        **Update Process:**
+        1. Review existing documentation structure
+        2. Identify best location for new content
+        3. Follow existing formatting and style
+        4. Include practical examples
+        5. Test instructions from user perspective
+        6. Update any related links or references
+        
+        **Documentation Style Guidelines:**
+        - Use Markdown formatting consistently
+        - Include code blocks with appropriate syntax highlighting
+        - Add table of contents for longer documents
+        - Use descriptive headings and subheadings
+        - Include "Prerequisites" section where applicable
